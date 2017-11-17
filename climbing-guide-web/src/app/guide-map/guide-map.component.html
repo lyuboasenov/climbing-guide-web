@@ -1,41 +1,22 @@
 <div class="guide-map-container">
 
-	<!-- this creates a google map on the page with the given lat/lng from -->
-	<!-- the component as the initial center of the map: -->
-	<!-- <agm-map 
-		[(latitude)]="latitude" 
-		[(longitude)]="longitude" 
-		[(zoom)]="zoom"
-		[mapTypeId]="mapType" 
-		(boundsChange)="onBoundsChange($event)">
-		
-		<agm-marker  *ngFor="let region of regions"
-			[latitude]="region.latitude" 
-			[longitude]="region.longitude"
-			[label]="region.name">
-			<agm-info-window>
-				<strong>{{region.name}}</strong>
-				<p>{{region.info}}</p>
-			</agm-info-window>
-		</agm-marker>
-		
-	</agm-map> -->
 	<ngui-map 
 		[(zoom)]="zoom"
 		[mapTypeId]="mapType">
 		
-	    <marker *ngFor="let region of regions" 
+	    <marker *ngFor="let region of regions"
 	    	[position]="region | getRegionPosition"
 	    	[title]="region.name"
-	    	(click)="onMarkerClick($event)"
+	    	(click)="onMarkerClick($event, region)"
 	    	>
+    		
 	    </marker>
 	    <info-window *ngFor="let region of regions"
-	    	[id]="region.id">
-    		<strong>{{region.name}}</strong>
+	    	id="iw-{{region.id}}"
+	    	>
+			<strong>{{region.name}}</strong>
 			<p>{{region.info}}</p>
     	</info-window>
-      
-</ngui-map>
+	</ngui-map>
 	
 </div>
