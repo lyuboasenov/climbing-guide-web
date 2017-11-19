@@ -4,18 +4,19 @@
 		[(zoom)]="zoom"
 		[mapTypeId]="mapType">
 		
-	    <marker *ngFor="let region of regions"
-	    	[position]="region | getRegionPosition"
-	    	[title]="region.name"
-	    	(click)="onMarkerClick($event, region)"
+	    <marker *ngFor="let item of items"
+	    	[position]="item.position"
+	    	[title]="item.name"
+	    	(click)="onMarkerClick($event, item)"
+	    	(dblclick)="onMarkerDoubleClick($event, item)"
 	    	>
     		
 	    </marker>
-	    <info-window *ngFor="let region of regions"
-	    	id="iw-{{region.id}}"
+	    <info-window *ngFor="let item of items"
+	    	id="iw-{{item.id}}"
 	    	>
-			<strong>{{region.name}}</strong>
-			<p>{{region.info}}</p>
+			<a class="btn rounded-btn" routerLink="{{item.uri}}" ><strong>{{item.name}}</strong></a>
+			<p>{{item.info}}</p>
     	</info-window>
 	</ngui-map>
 	

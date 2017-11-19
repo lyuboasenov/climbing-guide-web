@@ -1,22 +1,53 @@
+import { Region } from '../models/region';
+import { Area } from '../models/area';
+import { Sector } from '../models/sector';
+import { Route } from '../models/route';
 import { EnvironmentSpecificService } from './environment-specific.service';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { Region } from '../models/region';
+
 import { Observable } from 'rxjs/Observable';
 
 
 @Injectable()
 export class GuideService {
-  public baseUri: string;
+  private baseUri: string;
+  private serviceName: string = 'guide_api';
 
   constructor(private http: HttpClient, private envSpecificSvc: EnvironmentSpecificService) {
-    this.baseUri = `${envSpecificSvc.envSpecific.baseUri}/guide_api`;
+    this.baseUri = envSpecificSvc.envSpecific.baseUri;
   }
 
-  getAll(): Observable<Region[]> {
+  getAllRegions(lang = 'en'): Observable<Region[]> {
     return this.http
-      .get<Region[]>(`${this.baseUri}/regions`)
+      .get<Region[]>(this.formatApiUri(lang, 'regions'))
       .catch(this.handleError);
+  }
+
+  getAreas(lang = 'en', regionId: number): Observable<Area[]> {
+    return this.http
+      .get<Area[]>(this.formatApiUriById(lang, 'areas', regionId))
+      .catch(this.handleError);
+  }
+
+  getSectors(lang = 'en', areaId: number): Observable<Sector[]> {
+    return this.http
+      .get<Area[]>(this.formatApiUriById(lang, 'sectors', areaId))
+      .catch(this.handleError);
+  }
+
+  getRoutes(lang = 'en', sectorId: number): Observable<Route[]> {
+    return this.http
+      .get<Route[]>(this.formatApiUriById(lang, 'routes', sectorId))
+      .catch(this.handleError);
+  }
+
+  private formatApiUri(lang: string, api: string): string {
+    return `${this.baseUri}/${lang}/${this.serviceName}/${api}`;
+  }
+
+  private formatApiUriById(lang: string, api: string, id: number): string {
+    return `${this.baseUri}/${lang}/${this.serviceName}/${api}/${id}/`;
   }
 
   private handleError(err: HttpErrorResponse) {

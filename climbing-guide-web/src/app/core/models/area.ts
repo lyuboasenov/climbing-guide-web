@@ -1,4 +1,4 @@
-export class Region {
+export class Area {
    id: number;
    longitude: number;
    latitude: number;

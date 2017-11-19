@@ -1,8 +1,10 @@
-export class Region {
+export class Route {
    id: number;
    longitude: number;
    latitude: number;
-   size: number;
+   difficulty: number;
+   rating: number;
+   schemaThumb: string;
    name: string;
    info: string;
 }

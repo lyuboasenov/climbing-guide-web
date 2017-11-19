@@ -1,6 +1,6 @@
 import { GuideMapModule } from '../guide-map/guide-map.module';
-import { HomeComponent } from './home.component';
-import { homeRoutes } from './home.routes';
+import { RegionComponent } from './region.component';
+import { regionRoutes } from './region.routes';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
@@ -11,14 +11,14 @@ import { CoreModule } from '../core/core.module';
       CoreModule,
       BrowserModule,
       GuideMapModule,
-      RouterModule.forChild(homeRoutes)
+      RouterModule.forChild(regionRoutes)
     ],
     declarations: [
-      HomeComponent
+      RegionComponent
     ],
     exports: [
-      HomeComponent,
+      RegionComponent,
       RouterModule
     ]
 })
-export class HomeModule { }
+export class RegionModule { }
