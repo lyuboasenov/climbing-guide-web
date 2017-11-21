@@ -5,4 +5,5 @@ export class Model {
   public icon: string;
   public uri: string;
   public position: number[];
+  public thumb?: string;
 }

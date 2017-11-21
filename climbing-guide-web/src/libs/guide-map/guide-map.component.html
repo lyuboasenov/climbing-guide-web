@@ -1,0 +1,26 @@
+<div class="guide-map-container">
+
+	<ngui-map
+		[(zoom)]="zoom"
+		[mapTypeId]="mapType">
+		
+		<div *ngFor="let item of items">
+		    <marker
+		    	[position]="item.position"
+		    	(click)="onMarkerClick($event, item)"
+		    	(dblclick)="onMarkerDoubleClick($event, item)"
+		    	[title]="item.name"
+		    	>
+		    </marker>
+		    <info-window
+		    	id="iw-{{item.id}}">
+				<strong>{{item.name}}</strong>
+				<p>{{item.info}}</p>
+				<p *ngIf="item.thumb">
+					<img src="{{item.thumb}}">
+				</p>
+	    	</info-window>
+    	</div>
+	</ngui-map>
+	
+</div>

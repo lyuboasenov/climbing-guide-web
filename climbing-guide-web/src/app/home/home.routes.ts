@@ -1,4 +1,4 @@
-import { EnvironmentSpecificResolver } from '../core/environment-specific.resolver';
+import { EnvironmentSpecificResolver } from '../../libs/core/environment-specific.resolver';
 import { Routes } from '@angular/router';
 import { HomeComponent } from './index';
 

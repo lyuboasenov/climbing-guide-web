@@ -1,5 +1,5 @@
 import {Region} from '../core/models/region';
-import {Component, OnInit, Input} from '@angular/core';
+import {Component, OnInit, Input, EventEmitter, Output} from '@angular/core';
 
 import {GuideService} from '../core/services/guide.service';
 import { Model } from './guide-map.models';
@@ -18,31 +18,33 @@ export class GuideMapComponent implements OnInit {
   @Input() zoom: number = 7;
   @Input() items: Model[];
 
+  @Output() itemSelected: EventEmitter<Model> = new EventEmitter();
+
   mapType: string = 'hybrid';
-  regions: Region[];
+  private clickTimeout: any = null;
 
   constructor(private router: Router) {}
 
   ngOnInit() {
-    if (window.navigator.geolocation) {
-      window.navigator.geolocation.getCurrentPosition((position: Position) => {
-        this.latitude = position.coords.latitude;
-        this.longitude = position.coords.longitude;
-      });
-    }
   }
 
   onMarkerClick(event, model: Model) {
-    const marker: any = event.target;
+    this.clickTimeout = setTimeout(() => {
+      console.log(1);
+      const marker: any = event.target;
+      console.log(marker);
+      console.log(model);
 
-    for (const item of this.items) {
-      marker.nguiMapComponent.closeInfoWindow(`iw-${item.id}`);
-    }
+      for (const item of this.items) {
+        marker.nguiMapComponent.closeInfoWindow(`iw-${item.id}`);
+      }
 
-    marker.nguiMapComponent.openInfoWindow(`iw-${model.id}`, marker);
+      marker.nguiMapComponent.openInfoWindow(`iw-${model.id}`, marker);
+    }, 300);
   }
 
   onMarkerDoubleClick(event, model: Model) {
-    this.router.navigate([model.uri]);
+    clearTimeout(this.clickTimeout);
+    this.itemSelected.emit(model);
   }
 }
