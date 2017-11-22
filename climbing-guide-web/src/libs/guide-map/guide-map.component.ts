@@ -1,5 +1,5 @@
 import {Region} from '../core/models/region';
-import {Component, OnInit, Input, EventEmitter, Output} from '@angular/core';
+import {Component, OnInit, Input, EventEmitter, Output, OnChanges, SimpleChanges} from '@angular/core';
 
 import {GuideService} from '../core/services/guide.service';
 import { Model } from './guide-map.models';
@@ -12,11 +12,13 @@ import {Observable} from 'rxjs/Observable';
   templateUrl: './guide-map.component.html',
   styleUrls: ['./guide-map.component.css']
 })
-export class GuideMapComponent implements OnInit {
+export class GuideMapComponent implements OnInit, OnChanges {
   @Input() latitude: number = 51.678418;
   @Input() longitude: number = 7.809007;
   @Input() zoom: number = 7;
   @Input() items: Model[];
+  selecedItem: Model;
+  center = { lat: this.latitude, lng: this.longitude };
 
   @Output() itemSelected: EventEmitter<Model> = new EventEmitter();
 
@@ -28,18 +30,24 @@ export class GuideMapComponent implements OnInit {
   ngOnInit() {
   }
 
+  ngOnChanges(changes: SimpleChanges): void {
+    if (null != changes.latitude
+        || null != changes.longitude) {
+      this.center = { lat: +this.latitude, lng: +this.longitude };
+    }
+  }
+
   onMarkerClick(event, model: Model) {
     this.clickTimeout = setTimeout(() => {
-      console.log(1);
       const marker: any = event.target;
-      console.log(marker);
-      console.log(model);
+      this.selecedItem = model;
+      console.log(this.selecedItem);
+      console.log(event);
 
-      for (const item of this.items) {
-        marker.nguiMapComponent.closeInfoWindow(`iw-${item.id}`);
+      if (null != marker
+        && null != marker.nguiMapComponent) {
+        marker.nguiMapComponent.openInfoWindow(`iw-details`, marker);
       }
-
-      marker.nguiMapComponent.openInfoWindow(`iw-${model.id}`, marker);
     }, 300);
   }
 

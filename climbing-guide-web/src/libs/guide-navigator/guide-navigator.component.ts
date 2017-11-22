@@ -46,13 +46,13 @@ export class GuideNavigatorComponent implements OnInit {
 
       if (this.level === 1) {
         this.getAreas(item.id);
-        this.zoom = 10;
+        this.zoom = 12;
       } else if (this.level === 2) {
         this.getSectors(item.id);
-        this.zoom = 13;
+        this.zoom = 16;
       } else if (this.level >= 3) {
         this.getRoutes(item.id);
-        this.zoom = 16;
+        this.zoom = 20;
       }
     }
   }
@@ -72,6 +72,7 @@ export class GuideNavigatorComponent implements OnInit {
         name: route.name,
         info: route.info,
         icon: 'place',
+        color: 'orange',
         thumb: route.schemaThumb,
         position: [route.latitude, route.longitude],
         uri: `/routes/${route.id}/`
@@ -96,6 +97,7 @@ export class GuideNavigatorComponent implements OnInit {
         name: sector.name,
         info: sector.info,
         icon: 'layers',
+        color: 'blue',
         position: [sector.latitude, sector.longitude],
         uri: `/sectors/${sector.id}/`
       });
@@ -119,6 +121,7 @@ export class GuideNavigatorComponent implements OnInit {
         name: area.name,
         info: area.info,
         icon: 'map',
+        color: 'purple',
         position: [area.latitude, area.longitude],
         uri: `/areas/${area.id}/`
       });
@@ -141,7 +144,8 @@ export class GuideNavigatorComponent implements OnInit {
         id: region.id,
         name: region.name,
         info: region.info,
-        icon: 'M14 6l-3.75 5 2.85 3.8-1.6 1.2C9.81 13.75 7 10 7 10l-6 8h22L14 6z',
+        icon: 'terrain',
+        color: 'yellow',
         position: [region.latitude, region.longitude],
         uri: `/regions/${region.id}/`
       });

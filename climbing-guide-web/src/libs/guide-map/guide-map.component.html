@@ -2,25 +2,37 @@
 
 	<ngui-map
 		[(zoom)]="zoom"
-		[mapTypeId]="mapType">
+		[mapTypeId]="mapType"
+		[center]="center">
 		
 		<div *ngFor="let item of items">
+			<!-- Marker to be substituted with custom marker as soon as 
+			this issue https://github.com/ng2-ui/map/issues/154 is fixed. -->
 		    <marker
 		    	[position]="item.position"
 		    	(click)="onMarkerClick($event, item)"
 		    	(dblclick)="onMarkerDoubleClick($event, item)"
 		    	[title]="item.name"
+		    	[label]="{
+		    		color: item.color,
+		    		fontFamily: 'Material Icons',
+		    		fontSize: '92px',
+		    		fontWeight: 'normal',
+		    		text: item.icon
+		    	}"
 		    	>
 		    </marker>
-		    <info-window
-		    	id="iw-{{item.id}}">
-				<strong>{{item.name}}</strong>
-				<p>{{item.info}}</p>
-				<p *ngIf="item.thumb">
-					<img src="{{item.thumb}}">
-				</p>
-	    	</info-window>
     	</div>
+    	<info-window
+	    	id="iw-details">
+	    	<div *ngIf="selecedItem">
+				<strong>{{selecedItem.name}}</strong>
+				<p>{{selecedItem.info}}</p>
+				<p *ngIf="selecedItem.thumb">
+					<img src="{{selecedItem.thumb}}">
+				</p>
+			</div>
+    	</info-window>
 	</ngui-map>
 	
 </div>

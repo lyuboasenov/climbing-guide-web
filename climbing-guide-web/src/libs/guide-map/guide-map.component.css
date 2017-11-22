@@ -1,4 +1,8 @@
 ngui-map {
 	height: 90vh;
 }
-.material-icons.orange600 { color: #FB8C00; }
+.material-icons.yellow { color: #ffee58; }
+.material-icons.orange { color: #ffa726; }
+.material-icons.blue { color: #26c6da; }
+.material-icons.purple { color: #7e57c2; }
+.material-icons.md-92 { font-size: 92px; }
