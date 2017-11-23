@@ -29,7 +29,7 @@
 				<strong>{{selecedItem.name}}</strong>
 				<p>{{selecedItem.info}}</p>
 				<p *ngIf="selecedItem.thumb">
-					<img src="{{selecedItem.thumb}}">
+					<img [src]="selecedItem.thumb">
 				</p>
 			</div>
     	</info-window>
