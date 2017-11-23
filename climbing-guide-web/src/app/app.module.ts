@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 
 
@@ -48,6 +49,7 @@ import {
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     HomeModule,
     // CDk
     CdkTableModule,
