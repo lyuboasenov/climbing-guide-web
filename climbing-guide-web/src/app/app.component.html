@@ -1,6 +1,6 @@
 <mat-toolbar color="primary">
 	<div>
-		<button mat-button (click)="sidenav.open()">
+		<button mat-button (click)="sidenav.open();">
 			<mat-icon>reorder</mat-icon>
 		</button>
 	</div>
@@ -11,9 +11,9 @@
 <mat-sidenav-container>
   <mat-sidenav #sidenav>
     <!-- sidenav content -->
-    <mat-list>
+    <mat-nav-list>
       
-		  <a href="/home" mat-list-item>
+		  <a (click)="onHome(); sidenav.close();" mat-list-item>
 		    <mat-icon matListIcon>home</mat-icon>
 		    <h3 matLine> HOME </h3>
 		    <p matLine>
@@ -22,7 +22,7 @@
 		    </p>
 		    </a>
 	  
-	  <a href="/login" mat-list-item>
+	  <a (click)="onLogin(); sidenav.close();" mat-list-item>
 	    <mat-icon matListIcon>person</mat-icon>
 	    <h3 matLine> LOGIN </h3>
 	    <p matLine>
@@ -31,7 +31,7 @@
 	    </p>
 	    </a>
 	  
-	  <a href="/signup" mat-list-item>
+	  <a (click)="onSignup(); sidenav.close();" mat-list-item>
 	    <mat-icon matListIcon>person_add</mat-icon>
 	    <h3 matLine> SIGNUP </h3>
 	    <p matLine>
@@ -39,7 +39,7 @@
 	      <span class="demo-2"> -- damn. </span>
 	    </p>
 	    </a>
-	</mat-list>
+	</mat-nav-list>
   </mat-sidenav>
 
   <!-- primary content -->

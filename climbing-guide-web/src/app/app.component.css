@@ -2,3 +2,7 @@
 	margin-right:auto;
 	margin-left:auto;
 }
+
+map-sidenav .mat-list-item:hover{
+ cursor:pointer !important;
+}
