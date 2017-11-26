@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { AccountService } from '../core/services/account.service';
+import { AuthenticationService } from '../core/services/authentication.service';
 import { MaterialAlertComponent } from '../material-alert/material-alert.component';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/throw';
@@ -21,6 +22,7 @@ export class SignupComponent implements OnInit {
 
     constructor( private dialogRef: MatDialogRef<SignupComponent>,
         private accountService: AccountService,
+        private authenticationService: AuthenticationService,
         public dialog: MatDialog ) { }
 
     ngOnInit() {
@@ -41,7 +43,16 @@ export class SignupComponent implements OnInit {
                 .subscribe(
                 result => {
                     this.dialogRef.close( true );
-                    console.log( result );
+                    if (!this.authenticationService.login(this.username, this.password)) {
+                        let dialogRef = this.dialog.open( MaterialAlertComponent, {
+                            data: {
+                                message: 'Unable to authenticate. Please try again later.',
+                                actions: [
+                                    { text: 'OK', result: true }
+                                ]
+                            }
+                        } );
+                    }
                 },
                 error => {
                     let dialogRef = this.dialog.open( MaterialAlertComponent, {
