@@ -42,20 +42,10 @@ export class AppComponent implements OnInit {
 
     onLogin(): void {
         let dialogRef = this.dialog.open( LoginComponent);
-
-        dialogRef.afterClosed().subscribe( result => {
-            console.log( 'The dialog was closed' );
-            //this.animal = result;
-        } );
     }
     
     onSignup(): void {
         let dialogRef = this.dialog.open( SignupComponent);
-
-        dialogRef.afterClosed().subscribe( result => {
-            console.log( 'The dialog was closed' );
-            //this.animal = result;
-        } );
     }
     
     onHome(): void {

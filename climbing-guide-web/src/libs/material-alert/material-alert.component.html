@@ -1,0 +1,8 @@
+<h2 *ngIf="model.title"  mat-dialog-title>{{model.title}}</h2>
+<mat-dialog-content>
+  <pre>{{model.message}}</pre>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button *ngFor="let action of model.actions" (click)="onAction(action);" mat-button class="md-raised md-primary">{{action.text}}</button>
+</mat-dialog-actions>
