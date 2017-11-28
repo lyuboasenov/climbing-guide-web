@@ -2,18 +2,18 @@ import { Region } from '../models/region';
 import { Area } from '../models/area';
 import { Sector } from '../models/sector';
 import { Route } from '../models/route';
-import { EnvironmentSpecificService } from './environment-specific.service';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { BaseService } from './base.service';
 import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/map'
 
 
 @Injectable()
 export class GuideService extends BaseService {
 
-    constructor( http: HttpClient, envSpecificSvc: EnvironmentSpecificService ) {
-        super( http, envSpecificSvc );
+    constructor( http: HttpClient ) {
+        super( http );
         this.serviceName = 'guide_api';
     }
 

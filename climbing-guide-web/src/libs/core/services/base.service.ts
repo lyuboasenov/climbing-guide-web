@@ -1,4 +1,4 @@
-import { EnvironmentSpecificService } from './environment-specific.service';
+import { environment } from '../../../environments/environment';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 
@@ -6,10 +6,9 @@ export class BaseService {
     protected baseUri: string;
     protected serviceName: string;
 
-    constructor(protected http: HttpClient, private envSpecificSvc: EnvironmentSpecificService) {
-        this.baseUri = envSpecificSvc.envSpecific.baseUri;
+    constructor(protected http: HttpClient) {
+        this.baseUri = environment.apiBaseUri;
     }
-
 
     protected formatApiUri( api: string ): string {
         return `${this.baseUri}/${this.serviceName}/${api}`;

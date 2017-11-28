@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { EnvironmentSpecificService } from './environment-specific.service';
 import { BaseService } from './base.service';
 import { User } from '../models/user';
 import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/catch'
 
 @Injectable()
 export class AccountService extends BaseService {
 
-    constructor( http: HttpClient, envSpecificSvc: EnvironmentSpecificService ) {
-        super( http, envSpecificSvc );
+    constructor( http: HttpClient) {
+        super( http );
         this.serviceName = 'account_api';
         
         // set token if saved in local storage

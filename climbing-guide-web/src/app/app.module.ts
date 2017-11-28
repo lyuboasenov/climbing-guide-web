@@ -4,8 +4,7 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { routes } from './app.routes';
-import { EnvironmentSpecificResolver } from '../libs/core/environment-specific.resolver';
-import { EnvironmentSpecificService } from '../libs/core/services/environment-specific.service';
+import { AuthenticationService } from '../libs/core/services/authentication.service';
 import { HomeModule } from './home/home.module';
 import { RouterModule } from '@angular/router';
 import { CdkTableModule } from '@angular/cdk/table';
@@ -101,8 +100,7 @@ import { SignupModule, SignupComponent } from '../libs/signup/index';
         SignupComponent,
     ],
     providers: [
-        EnvironmentSpecificService,
-        EnvironmentSpecificResolver
+        AuthenticationService
     ],
     bootstrap: [AppComponent]
 } )

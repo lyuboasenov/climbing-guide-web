@@ -1,6 +1,13 @@
-<app-guide-map [items]="items"
-	[latitude]="latitude"
-	[longitude]="longitude"
-	[zoom]="zoom"
-	(itemSelected)="onItemSelecte($event)"> 
-</app-guide-map>
+<div>
+	<app-guide-map [items]="items"
+		[latitude]="latitude"
+		[longitude]="longitude"
+		[zoom]="zoom"
+		(itemSelected)="onItemSelecte($event)"> 
+	</app-guide-map>
+	
+	<button mat-fab class="add-route-fab" (click)="onAdd()">
+		<mat-icon>add</mat-icon>
+	</button>
+	
+</div>

@@ -1,6 +1,6 @@
 <mat-toolbar color="primary">
 	<div>
-		<button mat-button (click)="sidenav.open();">
+		<button mat-icon-button (click)="sidenav.open();">
 			<mat-icon>reorder</mat-icon>
 		</button>
 	</div>
@@ -21,8 +21,29 @@
 		      <span class="demo-2"> -- damn. </span>
 		    </p>
 		    </a>
-	  
-	  <a (click)="onLogin(); sidenav.close();" mat-list-item>
+
+		<a *ngIf="username" 
+	  	(click)="onProfile(); sidenav.close();" mat-list-item>
+	    <mat-icon matListIcon>person</mat-icon>
+	    <h3 matLine> PROFILE </h3>
+	    <p matLine>
+	      <span> Profile page </span>
+	      <span class="demo-2"> -- damn. </span>
+	    </p>
+	    </a>
+
+	  <a *ngIf="username" 
+	  	(click)="onLogout(); sidenav.close();" mat-list-item>
+	    <mat-icon matListIcon>exit_to_app</mat-icon>
+	    <h3 matLine> LOGOUT </h3>
+	    <p matLine>
+	      <span> Logout {{username}} </span>
+	      <span class="demo-2"> -- damn. </span>
+	    </p>
+	    </a>
+
+	  <a *ngIf="!username" 
+	  	(click)="onLogin(); sidenav.close();" mat-list-item>
 	    <mat-icon matListIcon>person</mat-icon>
 	    <h3 matLine> LOGIN </h3>
 	    <p matLine>
@@ -30,8 +51,9 @@
 	      <span class="demo-2"> -- damn. </span>
 	    </p>
 	    </a>
-	  
-	  <a (click)="onSignup(); sidenav.close();" mat-list-item>
+
+	  <a  *ngIf="!username"
+	  	(click)="onSignup(); sidenav.close();" mat-list-item>
 	    <mat-icon matListIcon>person_add</mat-icon>
 	    <h3 matLine> SIGNUP </h3>
 	    <p matLine>

@@ -1,3 +1,4 @@
+import { AuthenticationService } from '../libs/core/services/authentication.service';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
@@ -15,11 +16,16 @@ import 'rxjs/add/operator/mergeMap';
     encapsulation: ViewEncapsulation.None
 } )
 export class AppComponent implements OnInit {
+    username: string;
+
     public constructor(
+        private authService: AuthenticationService,
         private router: Router,
         private activatedRoute: ActivatedRoute,
         private titleService: Title,
-        private dialog: MatDialog ) { }
+        private dialog: MatDialog ) {
+        this.username = authService.username;
+    }
 
     public setTitle( newTitle: string ) {
         this.titleService.setTitle( newTitle );
@@ -41,14 +47,27 @@ export class AppComponent implements OnInit {
     }
 
     onLogin(): void {
-        let dialogRef = this.dialog.open( LoginComponent);
+        let dialogRef = this.dialog.open( LoginComponent );
+
+        dialogRef.afterClosed().subscribe( result => {
+            this.username = this.authService.username;
+        } );
     }
-    
+
     onSignup(): void {
-        let dialogRef = this.dialog.open( SignupComponent);
+        let dialogRef = this.dialog.open( SignupComponent );
+
+        dialogRef.afterClosed().subscribe( result => {
+            this.username = this.authService.username;
+        } );
     }
     
+    onLogout(): void {
+        this.authService.logout();
+        this.username = null;
+    }
+
     onHome(): void {
-        
+
     }
 }
