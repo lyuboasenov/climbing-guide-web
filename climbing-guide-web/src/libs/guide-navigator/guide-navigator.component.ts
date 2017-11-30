@@ -1,3 +1,4 @@
+import { AddDialogComponent } from '../route/add/add.dialog.component';
 import { Area } from '../core/models/area';
 import { Region } from '../core/models/region';
 import { Route } from '../core/models/route';
@@ -5,6 +6,7 @@ import { Sector } from '../core/models/sector';
 import { GuideService } from '../core/services/guide.service';
 import { Model } from '../guide-map/guide-map.models';
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-guide-navigator',
@@ -19,7 +21,7 @@ export class GuideNavigatorComponent implements OnInit {
   items: Model[];
   private level: number = 0;
 
-  constructor(private guideService: GuideService) {}
+  constructor(private guideService: GuideService, public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.getItems();
@@ -28,6 +30,10 @@ export class GuideNavigatorComponent implements OnInit {
   onItemSelecte(item: Model) {
     this.level++;
     this.getItems(item);
+  }
+
+  onAdd(): void {
+    this.dialog.open(AddDialogComponent);
   }
 
   getItems(item: Model = null): void {
