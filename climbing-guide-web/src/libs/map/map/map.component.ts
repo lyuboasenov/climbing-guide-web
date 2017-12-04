@@ -1,43 +1,43 @@
-import {Region} from '../core/models/region';
-import {Component, OnInit, Input, EventEmitter, Output, OnChanges, SimpleChanges} from '@angular/core';
+import { GuideService, Region } from '../../core/index';
+import { MapModel } from './map.model';
 
-import {GuideService} from '../core/services/guide.service';
-import { Model } from './guide-map.models';
-import { Router } from '@angular/router';
-import {Marker, NguiMapComponent} from '@ngui/map';
-import {Observable} from 'rxjs/Observable';
+import { Component, OnInit, Input, EventEmitter, Output, OnChanges, SimpleChanges } from '@angular/core';
+
+import { Marker, NguiMapComponent } from '@ngui/map';
+
+import { Observable } from 'rxjs/Observable';
 
 @Component({
-  selector: 'app-guide-map',
-  templateUrl: './guide-map.component.html',
-  styleUrls: ['./guide-map.component.css']
+  selector: 'app-map',
+  templateUrl: './map.component.html',
+  styleUrls: ['./map.component.css']
 })
-export class GuideMapComponent implements OnInit, OnChanges {
+export class MapComponent implements OnInit, OnChanges {
   @Input() latitude: number = 51.678418;
   @Input() longitude: number = 7.809007;
   @Input() zoom: number = 7;
-  @Input() items: Model[];
-  selecedItem: Model;
+  @Input() items: MapModel[];
+  selecedItem: MapModel;
   center = { lat: this.latitude, lng: this.longitude };
 
-  @Output() itemSelected: EventEmitter<Model> = new EventEmitter();
+  @Output() itemSelected: EventEmitter<MapModel> = new EventEmitter();
 
   mapType: string = 'hybrid';
   private clickTimeout: any = null;
 
-  constructor(private router: Router) {}
+  constructor() { }
 
   ngOnInit() {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (null != changes.latitude
-        || null != changes.longitude) {
+      || null != changes.longitude) {
       this.center = { lat: +this.latitude, lng: +this.longitude };
     }
   }
 
-  onMarkerClick(event, model: Model) {
+  onMarkerClick(event, model: MapModel) {
     this.clickTimeout = setTimeout(() => {
       const marker: any = event.target;
       this.selecedItem = model;
@@ -51,7 +51,7 @@ export class GuideMapComponent implements OnInit, OnChanges {
     }, 300);
   }
 
-  onMarkerDoubleClick(event, model: Model) {
+  onMarkerDoubleClick(event, model: MapModel) {
     clearTimeout(this.clickTimeout);
     this.itemSelected.emit(model);
   }

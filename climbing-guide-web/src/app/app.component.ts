@@ -1,10 +1,10 @@
-import { AuthenticationService } from '../libs/core/services/authentication.service';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { MatDialog } from '@angular/material';
-import { LoginComponent } from '../libs/login/index';
-import { SignupComponent } from '../libs/signup/index';
+
+import { AuthenticationService } from '../libs/core/index';
+import { LoginDialogComponent, SignupDialogComponent } from '../libs/user-management/index';
 
 import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/mergeMap';
@@ -23,7 +23,7 @@ export class AppComponent implements OnInit {
         private router: Router,
         private activatedRoute: ActivatedRoute,
         private titleService: Title,
-        private dialog: MatDialog ) {
+        private dialog: MatDialog) {
         this.username = authService.username;
     }
 
@@ -47,7 +47,7 @@ export class AppComponent implements OnInit {
     }
 
     onLogin(): void {
-        let dialogRef = this.dialog.open( LoginComponent );
+        const dialogRef = this.dialog.open( LoginDialogComponent );
 
         dialogRef.afterClosed().subscribe( result => {
             this.username = this.authService.username;
@@ -55,13 +55,13 @@ export class AppComponent implements OnInit {
     }
 
     onSignup(): void {
-        let dialogRef = this.dialog.open( SignupComponent );
+        const dialogRef = this.dialog.open( SignupDialogComponent );
 
         dialogRef.afterClosed().subscribe( result => {
             this.username = this.authService.username;
         } );
     }
-    
+
     onLogout(): void {
         this.authService.logout();
         this.username = null;

@@ -3,7 +3,7 @@ import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular
 import { BaseService } from './base.service';
 import { User } from '../models/user';
 import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/map'
+import 'rxjs/add/operator/map';
 
 @Injectable()
 export class AuthenticationService extends BaseService {
@@ -17,7 +17,7 @@ export class AuthenticationService extends BaseService {
         this.serviceName = 'o';
 
         // set token if saved in local storage
-        var currentUser = JSON.parse( localStorage.getItem( 'currentUser' ) );
+        const currentUser = JSON.parse( localStorage.getItem( 'currentUser' ) );
         this.token = currentUser && currentUser.token;
         this.username = currentUser && currentUser.username;
     }
@@ -38,10 +38,11 @@ export class AuthenticationService extends BaseService {
             .map(( data: any ) => {
                 console.log( data );
                 // login successful if there's a jwt token in the response
-                let token = data && data.access_token;
+                const token = data && data.access_token;
                 if ( token ) {
                     // set token property
                     this.token = token;
+                    this.username = username;
 
                     // store username and jwt token in local storage to keep user logged in between page refreshes
                     localStorage.setItem( 'currentUser', JSON.stringify( { username: username, token: token } ) );

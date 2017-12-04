@@ -1,42 +1,41 @@
-import { AddDialogComponent } from '../route/add/add.dialog.component';
-import { Area } from '../core/models/area';
-import { Region } from '../core/models/region';
-import { Route } from '../core/models/route';
-import { Sector } from '../core/models/sector';
-import { GuideService } from '../core/services/guide.service';
-import { Model } from '../guide-map/guide-map.models';
+import {
+  Area,
+  Region,
+  Route,
+  Sector,
+
+  GuideService
+} from '../../core/index';
+import {  } from '../core/models/region';
+
+import { MapModel } from '../map/map.model';
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
 
 @Component({
-  selector: 'app-guide-navigator',
-  templateUrl: './guide-navigator.component.html',
-  styleUrls: ['./guide-navigator.component.css']
+  selector: 'app-map-navigator',
+  templateUrl: './map-navigator.component.html',
+  styleUrls: ['./map-navigator.component.css']
 })
-export class GuideNavigatorComponent implements OnInit {
+export class MapNavigatorComponent implements OnInit {
 
   latitude: number = 51.678418;
   longitude: number = 7.809007;
   zoom: number = 10;
-  items: Model[];
+  items: MapModel[];
   private level: number = 0;
 
-  constructor(private guideService: GuideService, public dialog: MatDialog) { }
+  constructor(private guideService: GuideService) { }
 
   ngOnInit(): void {
     this.getItems();
   }
 
-  onItemSelecte(item: Model) {
+  onItemSelecte(item: MapModel) {
     this.level++;
     this.getItems(item);
   }
 
-  onAdd(): void {
-    this.dialog.open(AddDialogComponent);
-  }
-
-  getItems(item: Model = null): void {
+  getItems(item: MapModel = null): void {
     if (null == item) {
       this.getRegions();
       this.zoom = 10;
@@ -69,8 +68,8 @@ export class GuideNavigatorComponent implements OnInit {
       .subscribe(routes => this.items = this.mapRoutes(routes));
   }
 
-  private mapRoutes(routes: Route[]): Model[] {
-    const models: Model[] = [];
+  private mapRoutes(routes: Route[]): MapModel[] {
+    const models: MapModel[] = [];
 
     for (const route of routes) {
       models.push({
@@ -94,8 +93,8 @@ export class GuideNavigatorComponent implements OnInit {
       .subscribe(sectors => this.items = this.mapSectors(sectors));
   }
 
-  private mapSectors(sectors: Sector[]): Model[] {
-    const models: Model[] = [];
+  private mapSectors(sectors: Sector[]): MapModel[] {
+    const models: MapModel[] = [];
 
     for (const sector of sectors) {
       models.push({
@@ -118,8 +117,8 @@ export class GuideNavigatorComponent implements OnInit {
       .subscribe(areas => this.items = this.mapAreas(areas));
   }
 
-  private mapAreas(areas: Area[]): Model[] {
-    const models: Model[] = [];
+  private mapAreas(areas: Area[]): MapModel[] {
+    const models: MapModel[] = [];
 
     for (const area of areas) {
       models.push({
@@ -142,8 +141,8 @@ export class GuideNavigatorComponent implements OnInit {
       .subscribe(regions => this.items = this.mapRegions(regions));
   }
 
-  private mapRegions(regions: Region[]): Model[] {
-    const models: Model[] = [];
+  private mapRegions(regions: Region[]): MapModel[] {
+    const models: MapModel[] = [];
 
     for (const region of regions) {
       models.push({

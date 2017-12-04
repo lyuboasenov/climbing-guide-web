@@ -1,3 +1,9 @@
 agm-map {
   height: 90vh;
 }
+
+.add-route-fab {
+	position:absolute;
+	bottom:30px;
+	right:50px;
+}

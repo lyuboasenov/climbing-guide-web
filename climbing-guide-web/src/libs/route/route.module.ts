@@ -1,10 +1,9 @@
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { AddComponent } from './add/add.component';
-import { AddDialogComponent } from './add/add.dialog.component';
-import { CoreModule } from '../core/core.module';
-import { GuideMapModule } from '../guide-map/guide-map.module';
+
+// Material design
 import {
   MatAutocompleteModule,
   MatButtonModule,
@@ -14,12 +13,18 @@ import {
   MatSelectModule
 } from '@angular/material';
 
+// Own modules/components
+import { AddRouteComponent } from './add-route/add-route.component';
+import { AddRouteDialogComponent } from './add-route/add-route-dialog.component';
+import { CoreModule } from '../core/core.module';
+import { MapModule } from '../map/index';
+
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
-    CoreModule,
-    GuideMapModule,
+    ReactiveFormsModule,
 
     // Material
     MatAutocompleteModule,
@@ -27,9 +32,19 @@ import {
     MatDialogModule,
     MatIconModule,
     MatInputModule,
-    MatSelectModule
+    MatSelectModule,
+
+    // Own
+    CoreModule,
+    MapModule,
   ],
-  declarations: [AddComponent, AddDialogComponent],
-  exports: [AddComponent, AddDialogComponent]
+  declarations: [
+    AddRouteComponent,
+    AddRouteDialogComponent
+  ],
+  exports: [
+    AddRouteComponent,
+    AddRouteDialogComponent
+  ]
 })
 export class RouteModule { }

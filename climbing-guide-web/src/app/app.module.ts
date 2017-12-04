@@ -1,12 +1,8 @@
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgModule } from '@angular/core';
-
-import { AppComponent } from './app.component';
-import { routes } from './app.routes';
-import { AuthenticationService } from '../libs/core/services/authentication.service';
-import { HomeModule } from './home/home.module';
 import { RouterModule } from '@angular/router';
+
 import { CdkTableModule } from '@angular/cdk/table';
 import { OverlayModule } from '@angular/cdk/overlay';
 import {
@@ -40,8 +36,17 @@ import {
     MatSortModule,
     MatPaginatorModule
 } from '@angular/material';
-import { LoginModule, LoginComponent } from '../libs/login/index';
-import { SignupModule, SignupComponent } from '../libs/signup/index';
+
+// Own modules
+import {
+    UserManagementModule,
+    LoginDialogComponent,
+    SignupDialogComponent
+} from '../libs/user-management/index';
+import { AuthenticationService } from '../libs/core/index';
+import { HomeModule } from './home/home.module';
+import { AppComponent } from './app.component';
+import { routes } from './app.routes';
 
 @NgModule( {
     declarations: [
@@ -50,9 +55,6 @@ import { SignupModule, SignupComponent } from '../libs/signup/index';
     imports: [
         BrowserModule,
         BrowserAnimationsModule,
-        HomeModule,
-        LoginModule,
-        SignupModule,
 
         // CDk
         CdkTableModule,
@@ -85,19 +87,22 @@ import { SignupModule, SignupComponent } from '../libs/signup/index';
         MatTabsModule,
         MatToolbarModule,
         MatTooltipModule,
-
         MatNativeDateModule,
         MatSortModule,
         MatPaginatorModule,
 
         RouterModule.forRoot( routes ),
+
+        UserManagementModule,
+
+        HomeModule,
     ],
     exports: [
         RouterModule
     ],
     entryComponents: [
-        LoginComponent,
-        SignupComponent,
+        LoginDialogComponent,
+        SignupDialogComponent,
     ],
     providers: [
         AuthenticationService

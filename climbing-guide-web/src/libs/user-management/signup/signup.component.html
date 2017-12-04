@@ -1,0 +1,27 @@
+<form [formGroup]="signupForm" (ngSubmit)="signup()">
+  <mat-dialog-content>
+    <div class="md-dialog-content">
+      <mat-form-field class="form_full_width">
+        <input formControlName="email" matInput placeholder="Email" />
+      </mat-form-field>
+      <br />
+      <mat-form-field class="form_full_width">
+        <input formControlName="username" matInput placeholder="Username" />
+      </mat-form-field>
+      <br />
+      <mat-form-field class="form_full_width">
+        <input formControlName="password"
+        	matInput type="password" placeholder="Password" 
+        	validateEqualTo="confPassword" />
+      </mat-form-field>
+      <br />
+      <mat-form-field class="form_full_width">
+        <input formControlName="confirmPassword"
+        	matInput type="password" placeholder="Confirm password"  />
+      </mat-form-field>
+      <br />
+      <re-captcha formControlName="captcha" 
+      		siteKey="6Lf-dzoUAAAAAOM1AnjjW2_h4eW2kCTiWgv0E-aI"></re-captcha>
+    </div>
+  </mat-dialog-content>
+</form>

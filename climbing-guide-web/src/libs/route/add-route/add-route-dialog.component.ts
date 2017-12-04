@@ -4,11 +4,11 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 
 @Component( {
-    selector: 'app-add-dialog',
-    templateUrl: './add.dialog.component.html',
-    styleUrls: ['./add.dialog.component.css']
+    selector: 'app-add-route-dialog',
+    templateUrl: './add-route-dialog.component.html',
+    styleUrls: ['./add-route-dialog.component.css']
 } )
-export class AddDialogComponent implements OnInit {
+export class AddRouteDialogComponent implements OnInit {
 
     constructor() { }
 

@@ -1,4 +1,4 @@
-export class Model {
+export class MapModel {
   public id: number;
   public name: string;
   public info: string;

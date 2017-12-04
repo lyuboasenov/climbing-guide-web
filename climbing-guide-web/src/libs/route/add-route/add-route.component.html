@@ -1,0 +1,34 @@
+<form [formGroup]="addRouteForm" novalidate>
+      <mat-form-field class="form_full_width">
+            <input type="text" placeholder="Region" 
+                  aria-label="Region" matInput
+                  formControlName="region"
+                  [matAutocomplete]="auto">
+            <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+                  <mat-option *ngFor="let region of filteredRegions" [value]="region"> {{ region.name }} </mat-option>
+            </mat-autocomplete>
+      </mat-form-field>
+      <mat-form-field class="form_full_width">
+            <mat-select placeholder="Area"
+                  formControlName="area">
+                  <mat-option *ngFor="let area of areas" [value]="area"> {{ area.name }} </mat-option>
+            </mat-select>
+      </mat-form-field>
+      <mat-form-field class="form_full_width">
+            <mat-select placeholder="Sector"
+                  formControlName="sector">
+                  <mat-option *ngFor="let sector of sectors" [value]="sector"> {{sector.name }} </mat-option>
+            </mat-select>
+      </mat-form-field>
+      <mat-form-field class="form_full_width">
+            <input type="text" placeholder="Route name"
+                  aria-label="Name" matInput
+                  formControlName="name">
+      </mat-form-field>
+      <mat-form-field class="form_full_width">
+            <textarea placeholder="Info"
+                  aria-label="Info" matInput
+                  formControlName="info"></textarea>
+      </mat-form-field>
+      <app-map></app-map>
+</form>

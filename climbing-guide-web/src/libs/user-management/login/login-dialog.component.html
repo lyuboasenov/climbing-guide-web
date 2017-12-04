@@ -1,0 +1,11 @@
+<h2 mat-dialog-title>Log In</h2>
+<mat-dialog-content>
+  <app-login></app-login>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <a href="" class="md-primary">Forgot Password?</a>
+  <span flex></span>
+  <button mat-button type="submit" [disabled]="!loginComponent.loginForm.valid" (click)="login()" class="md-raised md-primary">Login</button>
+  <button mat-button class="md-raised md-primary" (click)="cancel()">Cancel</button>
+</mat-dialog-actions>
