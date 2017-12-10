@@ -1,27 +1,27 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { AddRegionComponent } from './add-region.component';
+import { Component, OnInit } from '@angular/core';
 import { Region } from '../../core/models/region';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
-import { AddRouteComponent } from './add-route.component';
-import { MatDialogRef, MatDialog } from '@angular/material';
 import { FormDialogComponent } from '../../core/components/form-dialog.component';
+import { MatDialogRef, MatDialog } from '@angular/material';
 import { MaterialAlertComponent } from '../../material-alert/material-alert.component';
 
 @Component( {
-    selector: 'app-add-route-dialog',
-    templateUrl: './add-route-dialog.component.html',
-    styleUrls: ['./add-route-dialog.component.css']
+    selector: 'app-add-region-dialog',
+    templateUrl: './add-region-dialog.component.html',
+    styleUrls: ['./add-region-dialog.component.css']
 } )
-export class AddRouteDialogComponent extends FormDialogComponent<AddRouteDialogComponent, AddRouteComponent, boolean> {
+export class AddRegionDialogComponent extends FormDialogComponent<AddRegionDialogComponent, AddRegionComponent, boolean> {
 
-    constructor(dialogRef: MatDialogRef<AddRouteDialogComponent>,
+    constructor(dialogRef: MatDialogRef<AddRegionDialogComponent>,
         dialog: MatDialog ) { super(dialogRef, dialog); }
 
     protected handleSubmitResult(result: boolean) {
         if (!result) {
             const dialogRef = this.dialog.open( MaterialAlertComponent, {
                 data: {
-                    message: 'Unable to add route. Please try again later.',
+                    message: 'Unable to add region. Please try again later.',
                     actions: [
                         { text: 'OK', result: true }
                     ]

@@ -1,11 +1,8 @@
-<h2 mat-dialog-title>Log In</h2>
+<h2 mat-dialog-title>Add route</h2>
 <mat-dialog-content>
-  <app-login #childComponent></app-login>
+      <app-add-region #childComponent></app-add-region>
 </mat-dialog-content>
-
 <mat-dialog-actions>
-  <a href="" class="md-primary">Forgot Password?</a>
-  <span flex></span>
   <button mat-button class="md-raised md-primary" (click)="cancel()">{{cancelLabel}}</button>
   <button mat-button type="submit" [disabled]="!childComponent.form.valid" (click)="submit()" class="md-raised md-primary">{{submitLabel}}</button>
 </mat-dialog-actions>

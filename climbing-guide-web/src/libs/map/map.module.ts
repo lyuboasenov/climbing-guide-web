@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 
 import { MapComponent } from './map/map.component';
 import { MapNavigatorComponent } from './map-navigator/map-navigator.component';
+import { MapPlaceSelectorComponent } from './map-place-selector/map-place-selector.component';
 
 import { CoreModule } from '../core/index';
 
@@ -29,11 +30,13 @@ import { NguiMapModule } from '@ngui/map';
     ],
     declarations: [
         MapComponent,
-        MapNavigatorComponent
+        MapNavigatorComponent,
+        MapPlaceSelectorComponent
     ],
     exports: [
         MapComponent,
-        MapNavigatorComponent
+        MapNavigatorComponent,
+        MapPlaceSelectorComponent
     ]
 })
 export class MapModule { }

@@ -1,3 +1,4 @@
+import { FormComponent } from '../../core/components/form.component';
 import { Observable } from 'rxjs/Observable';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
@@ -8,31 +9,20 @@ import { AuthenticationService } from '../../core/services/authentication.servic
     templateUrl: './login.component.html',
     styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent extends FormComponent<boolean> {
 
-    loginForm: FormGroup;
-
-    constructor(private fb: FormBuilder,
+    constructor(fb: FormBuilder,
         private authenticationService: AuthenticationService) {
-        this.createForm();
+        super(fb);
     }
 
-    ngOnInit() {
+    protected submitValid(): Observable<boolean> {
+        const formModel = this.form.value;
+        return this.authenticationService.login(formModel.username, formModel.password);
     }
 
-    reset(): void {
-        this.loginForm.reset();
-    }
-
-    login(): Observable<boolean> {
-        if (this.loginForm.valid) {
-            const formModel = this.loginForm.value;
-            return this.authenticationService.login(formModel.username, formModel.password);
-        }
-    }
-
-    private createForm(): void {
-        this.loginForm = this.fb.group({
+    protected createForm(): FormGroup {
+        return this.fb.group({
             username: ['', Validators.required],
             password: ['', Validators.required],
         });

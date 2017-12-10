@@ -1,0 +1,28 @@
+<form [formGroup]="form" novalidate>
+      <mat-form-field class="form_full_width">
+            <input type="text" placeholder="Name" 
+                  aria-label="Name" matInput
+                  formControlName="name">
+      </mat-form-field>
+      <mat-form-field class="form_full_width">
+            <textarea placeholder="Info" 
+                  aria-label="Info" matInput
+                  formControlName="info"></textarea>
+      </mat-form-field>
+      <mat-form-field class="form_full_width">
+            <textarea placeholder="Restrictions" 
+                  aria-label="Restrictions" matInput
+                  formControlName="restrictions"></textarea>
+      </mat-form-field>
+      <mat-form-field class="form_full_width">
+            <input type="text" placeholder="Route name"
+                  aria-label="Name" matInput
+                  formControlName="name">
+      </mat-form-field>
+      <mat-form-field class="form_full_width">
+            <textarea placeholder="Info"
+                  aria-label="Info" matInput
+                  formControlName="info"></textarea>
+      </mat-form-field>
+      <app-map-place-selector formControlName="position"></app-map-place-selector>
+</form>

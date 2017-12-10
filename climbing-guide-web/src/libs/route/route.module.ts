@@ -15,7 +15,9 @@ import {
 
 // Own modules/components
 import { AddRouteComponent } from './add-route/add-route.component';
+import { AddRegionComponent } from './add-region/add-region.component';
 import { AddRouteDialogComponent } from './add-route/add-route-dialog.component';
+import { AddRegionDialogComponent } from './add-region/add-region-dialog.component';
 import { CoreModule } from '../core/core.module';
 import { MapModule } from '../map/index';
 
@@ -40,11 +42,15 @@ import { MapModule } from '../map/index';
   ],
   declarations: [
     AddRouteComponent,
-    AddRouteDialogComponent
+    AddRouteDialogComponent,
+    AddRegionComponent,
+    AddRegionDialogComponent
   ],
   exports: [
     AddRouteComponent,
-    AddRouteDialogComponent
+    AddRouteDialogComponent,
+    AddRegionComponent,
+    AddRegionDialogComponent
   ]
 })
 export class RouteModule { }

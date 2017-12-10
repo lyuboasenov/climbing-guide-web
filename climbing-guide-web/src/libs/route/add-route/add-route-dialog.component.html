@@ -1,8 +1,8 @@
 <h2 mat-dialog-title>Add route</h2>
 <mat-dialog-content>
-      <app-add-route></app-add-route>
+      <app-add-route #childComponent></app-add-route>
 </mat-dialog-content>
 <mat-dialog-actions>
-  <button mat-button mat-dialog-close>Cancel</button>
-  <button mat-button [mat-dialog-close]="true">Save</button>
+    <button mat-button class="md-raised md-primary" (click)="cancel()">{{cancelLabel}}</button>
+    <button mat-button type="submit" [disabled]="!childComponent.form.valid" (click)="submit()" class="md-raised md-primary">{{submitLabel}}</button>
 </mat-dialog-actions>

@@ -1,0 +1,19 @@
+<div class="guide-map-container">
+
+	<ngui-map
+		mapTypeId="hybrid"
+		[(zoom)]="zoom"
+		(zoom_changed)="onZoomChanged($event)"
+		[center]="center">
+		
+		<marker
+			[position]="center"
+			(dragend)="dragEnded($event)"
+			draggable="true"
+			>
+			
+		</marker>
+    	
+	</ngui-map>
+	
+</div>

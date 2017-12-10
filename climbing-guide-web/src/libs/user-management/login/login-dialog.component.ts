@@ -1,3 +1,4 @@
+import { FormDialogComponent } from '../../core/components/form-dialog.component';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { MaterialAlertComponent } from '../../material-alert/material-alert.component';
@@ -9,38 +10,23 @@ import { LoginComponent } from './login.component';
     templateUrl: './login-dialog.component.html',
     styleUrls: ['./login.component.css']
 } )
-export class LoginDialogComponent implements OnInit {
-    @ViewChild(LoginComponent)
-    private loginComponent: LoginComponent;
+export class LoginDialogComponent extends FormDialogComponent<LoginDialogComponent, LoginComponent, boolean> {
 
-    constructor(private dialogRef: MatDialogRef<LoginDialogComponent>,
-            public dialog: MatDialog ) { }
+    submitLabel: string = 'Login';
 
-    ngOnInit() {
-    }
+    constructor(dialogRef: MatDialogRef<LoginDialogComponent>,
+            dialog: MatDialog ) { super(dialogRef, dialog); }
 
-    close(result: boolean) {
-        this.dialogRef.close( result );
-    }
-
-    cancel(): void {
-        this.close( false );
-    }
-
-    login(): void {
-        this.close( true );
-        this.loginComponent.login()
-        .subscribe(result => {
-            if (!result) {
-                const dialogRef = this.dialog.open( MaterialAlertComponent, {
-                    data: {
-                        message: 'Unable to authenticate. Please try again later.',
-                        actions: [
-                            { text: 'OK', result: true }
-                        ]
-                    }
-                } );
-            }
-        });
+    protected handleSubmitResult(result: boolean) {
+        if (!result) {
+            const dialogRef = this.dialog.open( MaterialAlertComponent, {
+                data: {
+                    message: 'Unable to authenticate. Please try again later.',
+                    actions: [
+                        { text: 'OK', result: true }
+                    ]
+                }
+            } );
+        }
     }
 }
